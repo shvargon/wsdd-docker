@@ -17,8 +17,10 @@ RUN addgroup -g 1001 wsdd &&\
     --no-create-home \
     --uid 1001 \
     wsdd && \
-    chown -R wsdd:wsdd "$(pwd)" && \
-    chmod -R 510 /entrypoint.sh /app
+    chgrp -R wsdd "$(pwd)" /entrypoint.sh && \
+    chmod -R 550 /entrypoint.sh /app
+
+USER wsdd
 
 LABEL   version="1.0" \
         maintainer="animekazna@gmail.com" 
