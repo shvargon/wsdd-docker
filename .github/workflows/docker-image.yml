@@ -15,8 +15,7 @@ jobs:
     steps:
     - name: Env
       env:
-        SUPER_SECRET: ${{ secrets.DOCKER_HUB_USERNAM }}
-        SUPER_SECRET1: ${{ docker.secrets.DOCKER_HUB_USERNAM }}
+        SUPER_SECRET: ${{ secrets.DOCKER_HUB_USERNAME }}
         SUPER_SECRET2: ${{ secrets.docker.DOCKER_HUB_USERNAM }}
       run: env
 #     - name: Login to Docker Hub
