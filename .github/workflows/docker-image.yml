@@ -17,9 +17,15 @@ jobs:
     - name: Login to DockerHub
       uses: docker/login-action@v2
       with:
-        username: ${{ secrets.DOCKER_USER }}
-        password: ${{ secrets.DOCKER_TOKEN }}
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag shvargon/wsdd:$(date +%s)
-    - name: Docker Push
-      run: docker push shvargon/wsdd
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+    - name: Build and push
+      id: docker_build
+      uses: docker/build-push-action@v2
+      with:
+        context: ./
+        file: ./Dockerfile
+        push: true
+        tags: shvargon/wsdd:latest
+    - name: Image digest
+      run: echo ${{ steps.docker_build.outputs.digest }}
