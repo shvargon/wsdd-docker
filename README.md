@@ -13,29 +13,16 @@ It also implements the client side of the discovery protocol which allows to sea
 Start a wsdd instance:
 
 ```bash
-$ docker run -p 3702:3702 -p 5357:5357 -e HOST=somehost -d shvargon/wsdd
+$ docker run --net=host -e HOST=somehost -d shvargon/wsdd
 ```
 
 Other arguments can be passed as arguments. Example run verbose mode:
 
 ```bash
-$ docker run -p 3702:3702 -p 5357:5357 -e HOST=somehost -d shvargon/wsdd -v
+$ docker run --net=host -e HOST=somehost -d shvargon/wsdd -v
 ```
 
 See the wsdd repository for available arguments
-
-
-Here is an example using docker-compose.yml:
-
-```yaml
-wsdd:
-  image: shvargon/wsdd
-  ports:
-   - "3702:3702"
-   - "5357:5357"
-  environment:
-   - HOST=somehost
-```
 
 ## Environment Variables
 ### HOST 
