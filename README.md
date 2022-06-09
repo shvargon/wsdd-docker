@@ -43,3 +43,6 @@ Override the host name wsdd uses during discovery.
 
 ### WORKGROUP
 By default wsdd reports the host is a member of a workgroup rather than a domain (use the -d/--domain option to override this). With -w/--workgroup the default workgroup name can be changed. The default work group name is WORKGROUP. The (provided) hostname is automatically converted to upper case. Use the -p option to change this behavior.
+
+### DOMAIN
+Assume that the host running wsdd joined an ADS domain. This will make wsdd report the host being a domain member. It disables workgroup membership reporting. The (provided) hostname is automatically converted to lower case. Use the -p option to change this behavior.
