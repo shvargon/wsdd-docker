@@ -12,4 +12,3 @@ COPY ./entrypoint.sh /
 EXPOSE 3702 5357
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
-CMD ["--workgroup $WORKGROUP"]
