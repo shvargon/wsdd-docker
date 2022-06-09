@@ -14,7 +14,9 @@ jobs:
 
     steps:
     - name: Echo username
-      run: echo "${{ secrets }}"
+      run: echo "${{ secrets.DOCKER_HUB_USERNAME }}"
+    - name: Echo username docker 
+      run: echo "${{ secrets.Docker.DOCKER_HUB_USERNAME }}"
     - name: Echo env
       run: env
     - name: Login to Docker Hub
