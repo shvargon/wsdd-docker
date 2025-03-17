@@ -1,9 +1,9 @@
 #!/bin/sh
-( : ${HOST?"pls pass -e HOST=somehost"} ) || exit 1
+: "${HOST:?pls pass -e HOST=somehost}"
 
 ARGS=""
 
-[[ -z "${WORKGROUP}" ]] || ARGS="$ARGS --workgroup $WORKGROUP"
-[[ -z "${DOMAIN}" ]] || ARGS="$ARGS --domain $DOMAIN"
+[ -n "${WORKGROUP}" ] && ARGS="$ARGS --workgroup ${WORKGROUP}"
+[ -n "${DOMAIN}" ] && ARGS="$ARGS --domain ${DOMAIN}"
 
-exec python /app/wsdd.py --hostname ${HOST} ${ARGS} $@
+exec python /app/wsdd.py --hostname "${HOST}" ${ARGS} "$@"
