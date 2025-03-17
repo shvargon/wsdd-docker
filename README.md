@@ -16,5 +16,3 @@ docker run --net=host -e HOST=somehost -d shvargon/wsdd
 ```
 
 For more advanced usage, visit 📦 [Docker Hub page](https://hub.docker.com/r/shvargon/wsdd)
-
----
