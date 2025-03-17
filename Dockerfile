@@ -1,7 +1,4 @@
 ARG WSDD_VERSION=v0.8
-ARG USERNAME=wsdd
-ARG USER_UID=1000
-ARG USER_GID=$USER_UID
 
 FROM python:3.13.2-alpine3.21 AS builder
 ARG WSDD_VERSION
@@ -13,6 +10,10 @@ RUN apk add --no-cache git && \
 
 FROM python:3.13.2-alpine3.21
 ARG WSDD_VERSION
+ARG USERNAME=wsdd
+ARG USERGROUP=$USERNAME
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
 
 LABEL version="${WSDD_VERSION}" \
       maintainer="animekazna@gmail.com" \
@@ -23,8 +24,8 @@ WORKDIR /app
 COPY --from=builder /app/wsdd/src/wsdd.py .
 COPY ./entrypoint.sh /
 
-RUN addgroup -g 1001 wsdd && \
-    adduser -D -H -u 1001 -G wsdd wsdd && \
+RUN addgroup -g ${USER_GID} ${USERGROUP} && \
+    adduser -D -H -u ${USER_UID} -G ${USERNAME} wsdd && \
     chmod -R 555 /entrypoint.sh /app
 
 USER wsdd
